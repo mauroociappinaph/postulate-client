@@ -1,26 +1,31 @@
+/**
+ * Interfaces para todos los componentes
+ */
+
 // Atoms
-import { ButtonProps } from './atoms';
+export * from './atoms';
 
 // Molecules
-import { CardProps } from './molecules';
+export * from './molecules';
 
 // Organisms
-import { ApplicationCardProps } from './organisms/ApplicationCard.interface';
+export * from './organisms';
 
 // Exportar todas las interfaces de componentes desde aquí
 export type {
   // Atoms
   ButtonProps,
+  AvatarProps,
+  BadgeProps
+} from './atoms';
 
+export type {
   // Molecules
-  CardProps,
+  CardProps
+} from './molecules';
 
+export type {
   // Organisms
-  ApplicationCardProps
-};
-
-export * from './atoms/ButtonProps.interface';
-export * from './molecules/CardProps.interface';
-export * from './organisms/ApplicationCardProps.interface';
-
-export { type NavbarProps } from './organisms';
+  ApplicationCardProps,
+  NavbarProps
+} from './organisms';

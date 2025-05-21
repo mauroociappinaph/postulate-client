@@ -1,3 +1,7 @@
+/**
+ * Interface para el componente PasswordToggle
+ */
+
 export interface PasswordToggleProps {
   value: string;
   onChange: (value: string) => void;

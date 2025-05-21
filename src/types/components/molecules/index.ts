@@ -1,3 +1,7 @@
+/**
+ * Interfaces para componentes moleculares
+ */
+
 import { CardProps } from './CardProps.interface';
 
 // Exportar interfaces de componentes moleculares

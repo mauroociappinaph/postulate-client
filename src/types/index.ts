@@ -31,7 +31,7 @@ export * from './components/molecules';
 export * from './components/organisms';
 
 // Postulations
-export * from './interface/postulations/postulation';
+export { ApplicationStatus } from './postulations/application-status';
 
 // UI
 export * from './interface/ui/simpleSelect.interface';
@@ -43,3 +43,29 @@ export * from './interface/form/NewPostulationForm.interface';
 
 // Language
 export * from './lang';
+
+/**
+ * Punto de entrada para todas las interfaces
+ * Centraliza las exportaciones de interfaces por dominio
+ */
+
+// UI Interfaces
+export * from './ui';
+
+// Modal Interfaces
+export * from './components/modal';
+
+// Form Interfaces
+export * from './form';
+
+// Auth Interfaces
+export * from './auth';
+
+// Component Interfaces
+export * from './components';
+
+// Postulation Interfaces
+export * from './postulations/postulation';
+
+// Password Toggle Interface
+export * from './password-toggle.interface';

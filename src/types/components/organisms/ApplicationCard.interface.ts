@@ -1,7 +1,10 @@
-import { Postulation } from '../../../types/interface/postulations/postulation';
+import { Postulation } from '../../postulations/postulation';
 
 export interface ApplicationCardProps {
-  application: Postulation;
+  postulation: Postulation;
+  onEdit?: (id: string) => void;
+  onDelete?: (id: string) => void;
+  className?: string;
 }
 
 export interface ApplicationCardGlassProps {

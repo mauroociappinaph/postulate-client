@@ -1,3 +1,7 @@
+/**
+ * Interfaces para componentes organismos
+ */
+
 // Exportar interfaces de componentes de tipo organismo
 
 import { ApplicationCardProps } from './ApplicationCard.interface';
