@@ -2,6 +2,12 @@ import { Postulation, PostulationStatus } from '../../features/postulation/types
 
 const cache = new WeakMap<Postulation[], Map<keyof Postulation, string[]>>();
 
+function logWarning(...args: unknown[]) {
+  if (process.env.NODE_ENV !== 'production') {
+    console.warn(...args);
+  }
+}
+
 /**
  * Extracts unique and sorted string values from an array of postulations for a given key.
  * Uses a WeakMap for caching results to improve performance.
@@ -25,7 +31,6 @@ export const getUniqueSortedValues = (
     if (cached) return cached;
 
     if (!Array.isArray(postulations)) {
-      console.warn(`⚠️ getUniqueSortedValues: postulations is not an array:`, postulations);
       return [];
     }
 
@@ -38,11 +43,8 @@ export const getUniqueSortedValues = (
         } else if (typeof value === 'number' || typeof value === 'boolean') {
           uniqueValues.add(String(value));
         } else {
-          // Optionally handle other types or log a warning
-          console.warn(
-            `⚠️ getUniqueSortedValues: Value for key '${String(
-              key
-            )}' is not a string, number, or boolean:`,
+          logWarning(
+            `⚠️ getUniqueSortedValues: Valor no manejado para la clave "${String(key)}":`,
             value
           );
         }
@@ -76,7 +78,7 @@ export const filterApplications = (
   positionFilter: string
 ): Postulation[] => {
   if (!Array.isArray(postulations)) {
-    console.warn(`⚠️ filterApplications: postulations is not an array:`, postulations);
+    logWarning(`⚠️ filterApplications: postulations is not an array:`, postulations);
     return [];
   }
 
@@ -113,18 +115,18 @@ export const paginateApplications = (
   itemsPerPage: number
 ): Postulation[] => {
   if (!Array.isArray(applications)) {
-    console.warn(`⚠️ paginateApplications: applications is not an array:`, applications);
+    logWarning(`⚠️ paginateApplications: applications is not an array:`, applications);
     return [];
   }
   if (typeof currentPage !== 'number' || currentPage < 1) {
-    console.warn(
+    logWarning(
       `⚠️ paginateApplications: currentPage must be a positive number. Received:`,
       currentPage
     );
     return []; // Or handle as appropriate, e.g., default to page 1
   }
   if (typeof itemsPerPage !== 'number' || itemsPerPage <= 0) {
-    console.warn(
+    logWarning(
       `⚠️ paginateApplications: itemsPerPage must be a positive number. Received:`,
       itemsPerPage
     );

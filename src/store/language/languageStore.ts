@@ -5,6 +5,12 @@ import { Language, t } from '../../i18n';
 import { es } from '../../i18n/translations/es';
 import { TranslationKey } from '../../i18n/types';
 
+function logWarning(...args: unknown[]) {
+  if (process.env.NODE_ENV !== 'production') {
+    console.warn(...args);
+  }
+}
+
 // Helper type to extract placeholder keys from a translation string
 type PlaceholderKeys<T extends string> = T extends `${string}{${infer K}}${infer Rest}`
   ? K | PlaceholderKeys<Rest>
@@ -18,7 +24,7 @@ const getStoredLanguage = (): Language => {
     const stored = localStorage.getItem('lang') as Language;
     return stored || 'es';
   } catch (error) {
-    console.warn('Could not access localStorage:', error);
+    logWarning('Could not access localStorage:', error);
     return 'es';
   }
 };

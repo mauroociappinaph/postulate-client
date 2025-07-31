@@ -113,7 +113,6 @@ export const usePostulationsStore = create<PostulationState>()(
               loading: false,
             }));
           } else {
-            console.warn('⚠️ No se encontró la postulación para eliminar.');
             set({ loading: false });
           }
         } catch {

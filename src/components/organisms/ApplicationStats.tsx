@@ -71,7 +71,6 @@ const ApplicationStats: React.FC = () => {
   // Applications in the last 30 days
   const recentApplications = useMemo(() => {
     if (!Array.isArray(postulations)) {
-      console.warn('⚠️ ApplicationStats: postulations no es un array:', postulations);
       return 0;
     }
 
@@ -87,7 +86,6 @@ const ApplicationStats: React.FC = () => {
   // Applications by status
   const applicationsByStatus = useMemo(() => {
     if (!Array.isArray(postulations)) {
-      console.warn('⚠️ ApplicationStats: postulations no es un array:', postulations);
       return {
         applied: 0,
         interview: 0,

@@ -39,7 +39,6 @@ const NewPostulationFormContainer: React.FC<NewPostulationFormProps> = ({
         const field = err.path[0] as keyof NewPostulationFormValues;
         fieldErrors[field] = err.message;
       });
-      console.warn('[validate] Errores encontrados:', fieldErrors);
       setErrors(fieldErrors);
       return false;
     }

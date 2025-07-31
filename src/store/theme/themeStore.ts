@@ -1,6 +1,12 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+function logWarning(...args: unknown[]) {
+  if (process.env.NODE_ENV !== 'production') {
+    console.warn(...args);
+  }
+}
+
 export interface ThemeState {
   theme: 'light' | 'dark';
   setTheme: (theme: 'light' | 'dark') => void;
@@ -15,7 +21,7 @@ export const useThemeStore = create<ThemeState>()(
           const storedTheme = localStorage.getItem('theme') as 'light' | 'dark';
           if (storedTheme) return storedTheme;
         } catch {
-          console.warn('localStorage no disponible, usando preferencia del sistema');
+          logWarning('localStorage no disponible, usando preferencia del sistema');
         }
         return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       })(),

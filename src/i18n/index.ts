@@ -14,7 +14,6 @@ const translations: Record<Language, Translations> = {
 export const getTranslation = (key: string, lang: Language): string => {
   const translation = translations[lang][key];
   if (!translation || typeof translation !== 'string') {
-    console.warn(`Translation missing or invalid for key: ${key} in language: ${lang}`);
     return key;
   }
   return translation;
