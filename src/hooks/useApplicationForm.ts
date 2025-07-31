@@ -153,7 +153,7 @@ export const useApplicationForm = (): UseApplicationFormReturn => {
 
     // Limpiar error general si la validación pasa
     setErrors(prev => {
-      const { general, ...rest } = prev;
+      const { ...rest } = prev;
       return rest;
     });
 
