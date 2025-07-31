@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { usePostulationsStore } from '../store';
-import { useAuthStore } from '../store/auth/authStore';
+import { useAuthStore } from '../features/auth/store/authStore';
 import { DateHelpers } from '../lib/helpers';
 import { z } from 'zod';
 import { newPostulationSchema } from '../features/postulation/domain/validation';

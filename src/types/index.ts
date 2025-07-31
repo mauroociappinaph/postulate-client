@@ -1,4 +1,4 @@
-import { User, AuthState } from './auth/authStore.interface';
+import { User, AuthState } from '../features/auth/types/authStore.interface';
 import {
   Postulation,
   PostulationState,
@@ -32,7 +32,7 @@ export type {
 export { STATUS_LABELS, STATUS_COLORS };
 
 // Auth
-export * from './auth/authStore.interface';
+export * from '../features/auth/types/authStore.interface';
 
 // Components
 export * from './components/atoms';
