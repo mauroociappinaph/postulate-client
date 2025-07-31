@@ -1,9 +1,6 @@
 import React from 'react';
 import FormField from './FormField.ui';
-import {
-  PostulationStatus,
-  STATUS_LABELS,
-} from '../../../types/interface/postulations/postulation';
+import { PostulationStatus, STATUS_LABELS, } from '../../../features/postulation/types/postulation';
 import { NewPostulationFormProps, NewPostulationFormValues } from '../../../types';
 import { useLanguageStore } from '../../../store';
 import Button from '../../../components/atoms/Button/Button.ui';
