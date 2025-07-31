@@ -36,6 +36,10 @@ export const useLanguageStore = create<LanguageState>()(
         localStorage.setItem('lang', lang);
         set({ language: lang, lang });
       },
+      reloadLanguage: () => {
+        const lang = getStoredLanguage();
+        set({ language: lang, lang });
+      },
     }),
     {
       name: 'language-storage',
