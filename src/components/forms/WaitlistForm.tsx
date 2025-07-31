@@ -34,7 +34,7 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onClose }) => {
       } else {
         setError(translate('waitlist.error'));
       }
-    } catch (err) {
+    } catch {
       setError(translate('auth.error.network'));
     } finally {
       setLoading(false);
