@@ -61,7 +61,7 @@ describe('String Helpers', () => {
     });
 
     test('should handle leading/trailing spaces', () => {
-      expect(capitalizeWords('  hello world  ')).toBe('  Hello World  '); // This test implies trimming happens later, but capitalize doesn't trim
+      expect(capitalizeWords('  hello world  ')).toBe('  Hello World  ');
     });
 
     // This test now passes because we fixed the capitalizeWords function to lowercase the rest of the word

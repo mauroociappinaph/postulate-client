@@ -27,7 +27,7 @@ export const getInitials = (name: string | null | undefined): string => {
  * @param text - La cadena a capitalizar.
  * @returns La cadena con cada palabra capitalizada.
  */
-export const capitalizeWords = (text: string): string => {
+export const capitalizeWords = (text: string | null | undefined): string => {
   if (!text) {
     return '';
   }
