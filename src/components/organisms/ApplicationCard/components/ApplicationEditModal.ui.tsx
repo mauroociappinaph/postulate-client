@@ -4,13 +4,14 @@ import {
   STATUS_LABELS,
   Postulation,
   PostulationStatus,
-} from '../../../../types/interface/postulations/postulation';
+} from '../../../../features/postulation/types/postulation';
 import StyledModalContainer from '../../../shared/components/StyledModalContainer/StyledModalContainer.ui';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '../../../ui/select';
-import { ApplicationEditModalUIProps } from '../../../../interfaces/components/organisms/ApplicationCard/ApplicationEditModalUI.interface';
+
 import { newPostulationSchema } from '../../../../features/postulation/domain/validation';
 import { z } from 'zod';
 import { useLanguageStore } from '../../../../store';
+import { ApplicationEditModalUIProps } from '../../../../types';
 
 type FormData = z.infer<typeof newPostulationSchema>;
 
