@@ -1,6 +1,6 @@
 import React from 'react';
 import { Search, X } from 'lucide-react';
-import { PostulationStatus } from '../../types/interface/postulations/postulation';
+import { PostulationStatus } from '../../features/postulation/types/postulation';
 import { useLanguageStore } from '../../store';
 
 interface SearchAndFilterProps {

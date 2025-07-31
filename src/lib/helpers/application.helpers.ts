@@ -1,4 +1,4 @@
-import { Postulation, PostulationStatus } from '../../types/interface/postulations/postulation';
+import { Postulation, PostulationStatus } from '../../features/postulation/types/postulation';
 
 const cache = new WeakMap<Postulation[], Map<keyof Postulation, string[]>>();
 

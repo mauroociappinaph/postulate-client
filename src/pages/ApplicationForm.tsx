@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { DateHelpers } from '../lib/helpers';
 import FieldWrapper from '../components/molecules/FieldWrapper/FieldWrapper';
 
-import PostulationStatusForm from '../components/forms/PostulationStatus';
+import PostulationStatusForm from '../features/postulation/components/PostulationStatus';
 import DuplicateModal from '../components/forms/DuplicateModal';
 import { useApplicationForm } from '../hooks/useApplicationForm';
 

@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from '../../components/ui/select';
 import FilterDropdown from './FilterDropdown';
-import { PostulationStatus } from '../../types/interface/postulations/postulation';
+import { PostulationStatus } from '../../features/postulation/types/postulation';
 import { useLanguageStore } from '../../store';
 
 interface FilterSelectsProps {

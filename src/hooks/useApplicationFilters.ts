@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Postulation, PostulationStatus } from '../types/interface/postulations/postulation';
+import { Postulation, PostulationStatus } from '../features/postulation/types/postulation';
 import { useErrorHandler } from './useErrorHandler';
 import { useLanguageStore } from '../store';
 import {

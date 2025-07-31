@@ -1,5 +1,5 @@
 import React from 'react';
-import { Postulation } from '../../types/interface/postulations/postulation';
+import { Postulation } from '../../features/postulation/types/postulation';
 import ApplicationCard from './ApplicationCard';
 import { AlertCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguageStore } from '../../store';

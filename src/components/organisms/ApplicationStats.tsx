@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from 'react';
-import { usePostulationsStore, useLanguageStore } from '../../store';
-import { Postulation } from '../../types/interface/postulations/postulation';
+import { usePostulationsStore } from '../../features/postulation/store/postulationsStore';
+import { Postulation } from '../../features/postulation/types/postulation';
 import {
   PieChart,
   Activity,
@@ -15,6 +15,7 @@ import {
   //FileText,
   //Briefcase,
 } from 'lucide-react';
+import { useLanguageStore } from '../../store';
 
 const cardGradient = 'bg-gradient-to-r from-blue-500 to-violet-500';
 

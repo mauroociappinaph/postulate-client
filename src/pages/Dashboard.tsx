@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import { usePostulationsStore } from '../store/postulations/postulationsStore';
+import { usePostulationsStore } from '../features/postulation/store/postulationsStore';
 import { useLanguageStore } from '../store/language/languageStore';
 import { useErrorHandler } from '../hooks/useErrorHandler';
 import { useApplicationFilters } from '../hooks/useApplicationFilters';

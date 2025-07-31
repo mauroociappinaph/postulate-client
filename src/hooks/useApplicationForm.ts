@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { usePostulationsStore } from '../store';
+import { usePostulationsStore } from '../features/postulation/store/postulationsStore';
 import { useAuthStore } from '../features/auth/store/authStore';
 import { DateHelpers } from '../lib/helpers';
 import { z } from 'zod';

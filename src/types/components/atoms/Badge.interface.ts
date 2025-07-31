@@ -1,4 +1,4 @@
-import { PostulationStatus } from '../../interface/postulations/postulation';
+import { PostulationStatus } from '../../../features/postulation/types/postulation';
 
 export interface BadgeProps {
   status: PostulationStatus;
