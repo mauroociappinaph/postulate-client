@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Briefcase, Menu, X } from 'lucide-react';
-import { useAuthStore } from '../../store/auth/authStore';
+import { useAuthStore } from '../../features/auth/store/authStore';
 import { ThemeToggle } from '../ThemeToggle';
 import LanguageSelector from '../../features/landing/components/LanguageSelector';
 import Avatar from '../atoms/Avatar';

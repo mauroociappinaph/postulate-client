@@ -4,7 +4,7 @@
  */
 
 // Auth Store
-export { useAuthStore } from './auth/authStore';
+export { useAuthStore } from '../features/auth/store/authStore';
 
 // Postulations Store
 export { usePostulationsStore } from './postulations/postulationsStore';
@@ -16,7 +16,7 @@ export { useThemeStore } from './theme/themeStore';
 export { useLanguageStore } from './language/languageStore';
 
 // Exportar grupos con alias para mayor claridad en importaciones
-import * as AuthStore from './auth/authStore';
+import * as AuthStore from '../features/auth/store/authStore';
 import * as PostulationsStore from './postulations/postulationsStore';
 import * as LanguageStore from './language/languageStore';
 import * as ThemeStore from './theme/themeStore';
@@ -27,6 +27,6 @@ export { AuthStore, PostulationsStore, LanguageStore, ThemeStore };
 
 // Re-export specific types and constants
 export type { Postulation, PostulationState } from '../types/interface/postulations/postulation';
-export type { AuthState } from '../types/auth/auth.interface';
+export type { AuthState } from '../features/auth/types/auth.interface';
 export type { LanguageState } from '../types/interface/language/language.interface';
 export type { ThemeState } from './theme/themeStore';

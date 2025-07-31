@@ -4,7 +4,7 @@ import { Postulation, PostulationState } from '../../types/interface/postulation
 import { postulationsApi } from '../../api/postulations';
 import axios from 'axios';
 
-import { useAuthStore } from '../auth/authStore';
+import { useAuthStore } from '../../features/auth/store/authStore';
 
 export const usePostulationsStore = create<PostulationState>()(
   persist(

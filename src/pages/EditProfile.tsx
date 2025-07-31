@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAuthStore } from '../store/auth/authStore';
+import { useAuthStore } from '../features/auth/store/authStore';
 import { isValidEmail, hasContent } from '../lib/helpers/validation.helpers';
 import { motion } from 'framer-motion';
 import { useLanguageStore } from '../store';

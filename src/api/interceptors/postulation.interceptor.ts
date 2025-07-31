@@ -1,5 +1,5 @@
 import { AxiosError, AxiosResponse, InternalAxiosRequestConfig, AxiosRequestHeaders } from 'axios';
-import { useAuthStore } from '../../store/auth/authStore';
+import { useAuthStore } from '../../features/auth/store/authStore';
 
 // Función para decodificar el token JWT
 const getUserIdFromToken = () => {
