@@ -1,7 +1,7 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthStore, useThemeStore } from './store';
-import { AuthLayout } from './features/auth/AuthLayout';
+import { AuthLayout } from './features/auth/layouts/AuthLayout';
 import LoadingSpinner from './components/atoms/LoadingSpinner';
 import { Toaster } from 'react-hot-toast';
 import { AuthRedirect } from './components/AuthRedirect';
@@ -11,8 +11,8 @@ const Dashboard = lazy(() => import('./pages/Dashboard'));
 const ApplicationForm = lazy(() => import('./pages/ApplicationForm'));
 const Layout = lazy(() => import('./components/templates/Layout'));
 const Landing = lazy(() => import('./pages/Landing'));
-const Login = lazy(() => import('./pages/Login'));
-const Register = lazy(() => import('./pages/Register'));
+const Login = lazy(() => import('./features/auth/pages/Login'));
+const Register = lazy(() => import('./features/auth/pages/Register'));
 const EditProfile = lazy(() => import('./pages/EditProfile'));
 const IAResponseGenerator = lazy(() => import('./pages/postulation/IAResponseGenerator'));
 
