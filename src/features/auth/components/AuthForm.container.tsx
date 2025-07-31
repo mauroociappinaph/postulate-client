@@ -1,7 +1,7 @@
 import React from 'react';
 import { z } from 'zod';
 import { AuthForm } from './AuthForm.ui';
-import { useAuthStore } from '../../../store/auth/authStore';
+import { useAuthStore } from '../store/authStore';
 import { useNavigate } from 'react-router-dom';
 import { useLanguageStore } from '../../../store/language/languageStore';
 import { TranslationKey } from '../../../i18n/types';
