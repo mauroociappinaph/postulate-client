@@ -1,72 +1,62 @@
-/**
- * Helpers para el manejo de fechas
- * Funciones reutilizables para formatear, manipular y validar fechas
- */
+// src/lib/helpers/date.helpers.ts
 
 /**
- * Obtiene la fecha actual en formato ISO (YYYY-MM-DD)
- * @returns La fecha actual en formato ISO
+ * Devuelve la fecha actual en formato ISO (YYYY-MM-DD).
+ * Utiliza toISOString para asegurar un formato consistente sin importar la zona horaria.
  */
 export const getCurrentDateISO = (): string => {
-  return new Date().toISOString().split('T')[0];
+  return new Date().toISOString().slice(0, 10);
 };
 
 /**
- * Formatea una fecha para mostrar en la interfaz
- * @param dateString - La fecha en formato ISO o timestamp
- * @param locale - El locale para el formato (por defecto es-ES)
- * @returns La fecha formateada (ej: "15 mar. 2023")
+ * ⭐️ CORREGIDO: Formatea una fecha a un string localizado, forzando UTC.
+ * @param dateString - La fecha en formato 'YYYY-MM-DD'.
+ * @param locale - El código de idioma (ej. 'es-ES', 'en-US').
+ * @param options - Opciones de formato para toLocaleDateString.
  */
 export const formatDate = (
   dateString: string,
-  locale: string = 'es-ES',
-  options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short', year: 'numeric' }
+  locale: string,
+  options: Intl.DateTimeFormatOptions
 ): string => {
-  try {
-    return new Date(dateString).toLocaleDateString(locale, options);
-  } catch (error) {
-    console.error('Error formateando fecha:', error);
-    return dateString; // Devuelve la fecha original si hay error
-  }
+  // Se interpreta la fecha como UTC
+  const date = new Date(dateString + 'T00:00:00');
+
+  // Se especifica timeZone: 'UTC' para que toLocaleDateString no la convierta a la hora local.
+  const utcOptions: Intl.DateTimeFormatOptions = { ...options, timeZone: 'UTC' };
+
+  return date.toLocaleDateString(locale, utcOptions);
 };
 
 /**
- * Calcula la diferencia en días entre dos fechas
- * @param date1 - Primera fecha (string o Date)
- * @param date2 - Segunda fecha (string o Date), por defecto es la fecha actual
- * @returns Número de días de diferencia (positivo si date1 > date2)
+ * Calcula la diferencia en días entre dos fechas.
+ * @param date1 - La fecha más reciente (string o Date).
+ * @param date2 - La fecha más antigua (string o Date).
  */
-export const daysBetween = (date1: string | Date, date2: string | Date = new Date()): number => {
-  const d1 = date1 instanceof Date ? date1 : new Date(date1);
-  const d2 = date2 instanceof Date ? date2 : new Date(date2);
-  const diffTime = d1.getTime() - d2.getTime();
-  return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+export const daysBetween = (date1: string | Date, date2: string | Date): number => {
+  const d1 = new Date(date1);
+  const d2 = new Date(date2);
+  const oneDay = 1000 * 60 * 60 * 24;
+  const differenceMs = d1.getTime() - d2.getTime();
+  return Math.round(differenceMs / oneDay);
 };
 
 /**
- * Devuelve true si la fecha es hoy
- * @param dateString - La fecha a comprobar
- * @returns true si la fecha es hoy, false en caso contrario
+ * Verifica si una fecha dada en formato 'YYYY-MM-DD' es hoy.
+ * Compara strings directamente para evitar problemas de zona horaria.
  */
 export const isToday = (dateString: string): boolean => {
-  const today = new Date();
-  const date = new Date(dateString);
-
-  return (
-    date.getDate() === today.getDate() &&
-    date.getMonth() === today.getMonth() &&
-    date.getFullYear() === today.getFullYear()
-  );
+  return dateString === getCurrentDateISO();
 };
 
 /**
- * Agrega días a una fecha
- * @param dateString - La fecha inicial
- * @param days - Número de días a agregar (puede ser negativo)
- * @returns Nueva fecha en formato ISO
+ * Agrega un número de días a una fecha y la devuelve en formato ISO (YYYY-MM-DD).
+ * @param dateString - La fecha inicial en formato 'YYYY-MM-DD'.
+ * @param days - El número de días a agregar (puede ser negativo).
  */
 export const addDays = (dateString: string, days: number): string => {
-  const date = new Date(dateString);
+  // Se agrega 'T00:00:00' para asegurar que la fecha se interprete como UTC
+  const date = new Date(dateString + 'T00:00:00');
   date.setDate(date.getDate() + days);
-  return date.toISOString().split('T')[0];
+  return date.toISOString().slice(0, 10);
 };
