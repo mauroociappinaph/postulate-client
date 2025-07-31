@@ -11,62 +11,50 @@ export class CloudinaryService {
       throw new Error('profile.errors.imageTooLarge');
     }
 
+    // Comprimir la imagen antes de subirla
+    const compressedFile = await compressImage(file);
+
+    const formData = new FormData();
+    formData.append('file', compressedFile);
+    formData.append('upload_preset', CLOUDINARY_CONFIG.uploadPreset);
+
+    // Agregar transformaciones
+    Object.entries(CLOUDINARY_DEFAULTS.imageTransformations).forEach(([key, value]) => {
+      formData.append(key, value.toString());
+    });
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 segundos de timeout
+
     try {
-      // Comprimir la imagen antes de subirla
-      const compressedFile = await compressImage(file);
-
-      const formData = new FormData();
-      formData.append('file', compressedFile);
-      formData.append('upload_preset', CLOUDINARY_CONFIG.uploadPreset);
-
-      // Agregar transformaciones
-      Object.entries(CLOUDINARY_DEFAULTS.imageTransformations).forEach(([key, value]) => {
-        formData.append(key, value.toString());
+      const response = await fetch(CLOUDINARY_UPLOAD_URL, {
+        method: 'POST',
+        body: formData,
+        signal: controller.signal,
       });
 
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 segundos de timeout
+      clearTimeout(timeoutId);
 
-      try {
-        const response = await fetch(CLOUDINARY_UPLOAD_URL, {
-          method: 'POST',
-          body: formData,
-          signal: controller.signal,
-        });
-
-        clearTimeout(timeoutId);
-
-        if (!response.ok) {
-          const errorData = await response.json().catch(() => null);
-          console.error('Cloudinary Upload Error:', {
-            status: response.status,
-            statusText: response.statusText,
-            errorData,
-          });
-
-          if (response.status === 401) {
-            throw new Error('profile.errors.uploadError');
-          } else if (response.status === 413) {
-            throw new Error('profile.errors.imageTooLarge');
-          } else {
-            throw new Error('profile.errors.uploadFailed');
-          }
+      if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error('profile.errors.uploadError');
+        } else if (response.status === 413) {
+          throw new Error('profile.errors.imageTooLarge');
+        } else {
+          throw new Error('profile.errors.uploadFailed');
         }
-
-        const data = await response.json();
-        return data.secure_url;
-      } catch (error) {
-        if (error instanceof Error) {
-          if (error.name === 'AbortError') {
-            throw new Error('profile.errors.uploadTimeout');
-          } else if (error.name === 'TypeError') {
-            throw new Error('profile.errors.uploadNetworkError');
-          }
-        }
-        throw error;
       }
+
+      const data = await response.json();
+      return data.secure_url;
     } catch (error) {
-      console.error('Error en CloudinaryService.uploadImage:', error);
+      if (error instanceof Error) {
+        if (error.name === 'AbortError') {
+          throw new Error('profile.errors.uploadTimeout');
+        } else if (error.name === 'TypeError') {
+          throw new Error('profile.errors.uploadNetworkError');
+        }
+      }
       throw error;
     }
   }

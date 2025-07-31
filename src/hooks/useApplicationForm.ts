@@ -188,8 +188,7 @@ export const useApplicationForm = (): UseApplicationFormReturn => {
       }
 
       navigate('/dashboard');
-    } catch (error) {
-      console.error('Error al enviar el formulario:', error);
+    } catch {
       setErrors({ submit: 'Error al enviar el formulario' });
     } finally {
       setIsSubmitting(false);

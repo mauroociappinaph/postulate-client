@@ -23,7 +23,6 @@ export const HeroBackground: React.FC<HeroBackgroundProps> = ({
     };
 
     const handleError = () => {
-      console.error('Error al cargar la imagen del hero');
       setImageLoaded(false);
       setImageError(true);
     };

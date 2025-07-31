@@ -3,8 +3,7 @@ import { persist } from 'zustand/middleware';
 import { Postulation, PostulationState } from '../types/postulation';
 import { postulationsApi } from '../api/postulations';
 import axios from 'axios';
-
-import { useAuthStore } from '../../auth/store/authStore';
+import { useAuthStore } from '../../../store';
 
 export const usePostulationsStore = create<PostulationState>()(
   persist(
@@ -33,38 +32,8 @@ export const usePostulationsStore = create<PostulationState>()(
           }));
           return response.data.result.id;
         } catch (error) {
-          console.error('❌ Error al crear postulación:', error);
           if (axios.isAxiosError(error)) {
-            console.error('📝 Detalles del error:', {
-              status: error.response?.status,
-              data: error.response?.data,
-              message: error.message,
-              config: {
-                url: error.config?.url,
-                method: error.config?.method,
-                data: error.config?.data,
-                headers: error.config?.headers,
-                baseURL: error.config?.baseURL,
-              },
-            });
-
             // Agregar logs detallados del error
-            console.error('[DEBUG] Respuesta del servidor:', {
-              status: error.response?.status,
-              statusText: error.response?.statusText,
-              headers: error.response?.headers,
-              data: error.response?.data,
-            });
-
-            console.error('[DEBUG] Datos enviados:', {
-              url: error.config?.url,
-              method: error.config?.method,
-              data: error.config?.data,
-              headers: error.config?.headers,
-              baseURL: error.config?.baseURL,
-            });
-
-            console.error('[DEBUG] Stack trace:', error.stack);
           }
           set({ loading: false });
           throw error;
@@ -82,7 +51,6 @@ export const usePostulationsStore = create<PostulationState>()(
           );
 
           if (missingFields.length > 0) {
-            console.error('❌ [PostulationsStore] Campos requeridos faltantes:', missingFields);
             throw new Error(`Campos requeridos faltantes: ${missingFields.join(', ')}`);
           }
 
@@ -118,44 +86,11 @@ export const usePostulationsStore = create<PostulationState>()(
               loading: false,
             });
           } else {
-            console.error(
-              '❌ [PostulationsStore] Estructura de respuesta inválida al actualizar:',
-              allPostulationsResponse
-            );
             set({ loading: false });
           }
         } catch (error) {
           if (axios.isAxiosError(error)) {
-            console.error('📝 [PostulationsStore] Detalles del error:', {
-              status: error.response?.status,
-              data: error.response?.data,
-              message: error.message,
-              config: {
-                url: error.config?.url,
-                method: error.config?.method,
-                data: error.config?.data,
-                headers: error.config?.headers,
-                baseURL: error.config?.baseURL,
-              },
-            });
-
             // Logs adicionales para debugging
-            console.error('[DEBUG] Respuesta del servidor:', {
-              status: error.response?.status,
-              statusText: error.response?.statusText,
-              headers: error.response?.headers,
-              data: error.response?.data,
-            });
-
-            console.error('[DEBUG] Datos enviados:', {
-              url: error.config?.url,
-              method: error.config?.method,
-              data: error.config?.data,
-              headers: error.config?.headers,
-              baseURL: error.config?.baseURL,
-            });
-
-            console.error('[DEBUG] Stack trace:', error.stack);
           }
           set({ loading: false });
           throw error;
@@ -181,18 +116,7 @@ export const usePostulationsStore = create<PostulationState>()(
             console.warn('⚠️ No se encontró la postulación para eliminar.');
             set({ loading: false });
           }
-        } catch (error) {
-          if (axios.isAxiosError(error)) {
-            if (error.response?.status === 404) {
-              console.error(
-                '❌ Postulación no encontrada (404). Ya fue eliminada o el ID no es válido.'
-              );
-            } else {
-              console.error('❌ Error al intentar eliminar la postulación:', error.message);
-            }
-          } else {
-            console.error('❌ Error inesperado:', error);
-          }
+        } catch {
           set({ loading: false });
         }
       },
@@ -222,7 +146,6 @@ export const usePostulationsStore = create<PostulationState>()(
           const token = useAuthStore.getState().token;
 
           if (!token) {
-            console.error('❌ No se encontró el token de autenticación');
             throw new Error('No se encontró el token de autenticación');
           }
 
@@ -232,7 +155,6 @@ export const usePostulationsStore = create<PostulationState>()(
           const userId = decodedPayload.id || decodedPayload.userId;
 
           if (!userId) {
-            console.error('❌ No se encontró el ID del usuario en el token');
             throw new Error('No se encontró el ID del usuario en el token');
           }
 
@@ -247,27 +169,12 @@ export const usePostulationsStore = create<PostulationState>()(
               loading: false,
             });
           } else {
-            console.error('❌ Estructura de respuesta inválida:', response);
             set({
               postulations: [],
               loading: false,
             });
           }
         } catch (error) {
-          console.error('❌ Error al obtener postulaciones:', error);
-          if (axios.isAxiosError(error)) {
-            console.error('📝 Detalles del error:', {
-              status: error.response?.status,
-              data: error.response?.data,
-              message: error.message,
-              config: {
-                url: error.config?.url,
-                method: error.config?.method,
-                headers: error.config?.headers,
-                baseURL: error.config?.baseURL,
-              },
-            });
-          }
           set({ loading: false, postulations: [] });
           throw error;
         }

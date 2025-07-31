@@ -35,7 +35,6 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onClose }) => {
         setError(translate('waitlist.error'));
       }
     } catch (err) {
-      console.error('Error al añadir email a la whitelist:', err);
       setError(translate('auth.error.network'));
     } finally {
       setLoading(false);

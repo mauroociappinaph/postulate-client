@@ -27,7 +27,6 @@ const ProfileImage: React.FC<ProfileImageProps> = ({
       const imageUrl = await CloudinaryService.uploadImage(file);
       onImageUpload(imageUrl);
     } catch (error) {
-      console.error('Error al subir la imagen:', error);
       if (error instanceof Error) {
         onError(error.message);
       } else {

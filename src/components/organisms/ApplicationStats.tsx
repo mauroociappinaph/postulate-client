@@ -29,7 +29,6 @@ const ApplicationStats: React.FC = () => {
   // Total count
   const totalApplications = useMemo(() => {
     if (!Array.isArray(postulations)) {
-      console.warn('⚠️ ApplicationStats: postulations no es un array:', postulations);
       return 0;
     }
     return postulations.length;
@@ -38,7 +37,6 @@ const ApplicationStats: React.FC = () => {
   // Active applications (not rejected or accepted)
   const activeApplications = useMemo(() => {
     if (!Array.isArray(postulations)) {
-      console.warn('⚠️ ApplicationStats: postulations no es un array:', postulations);
       return 0;
     }
     return postulations.filter(
@@ -50,7 +48,6 @@ const ApplicationStats: React.FC = () => {
   // Get company with most applications
   const topCompany = useMemo(() => {
     if (!Array.isArray(postulations)) {
-      console.warn('⚠️ ApplicationStats: postulations no es un array:', postulations);
       return { name: '', count: 0 };
     }
 

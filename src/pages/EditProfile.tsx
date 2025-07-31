@@ -132,7 +132,6 @@ const EditProfile: React.FC = () => {
       const imageUrl = await CloudinaryService.uploadImage(file);
       setPreviewUrl(imageUrl);
     } catch (error) {
-      console.error('Error al subir la imagen:', error);
       if (error instanceof Error) {
         setError(error.message);
       } else {
@@ -169,8 +168,7 @@ const EditProfile: React.FC = () => {
 
       setSuccess(true);
       setTimeout(() => setSuccess(false), 2000);
-    } catch (error) {
-      console.error('Error al actualizar perfil:', error);
+    } catch {
       setError(translate('profile.errors.updateFail'));
     } finally {
       setIsLoading(false);

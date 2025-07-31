@@ -55,8 +55,7 @@ export const useAuthStore = create<AuthState>()(
             },
           });
           return true;
-        } catch (error) {
-          console.error('Error al decodificar token:', error);
+        } catch {
           set({ isAuthenticated: false, user: null, token: null });
           return false;
         }
@@ -85,7 +84,6 @@ export const useAuthStore = create<AuthState>()(
           });
         } catch (error) {
           set({ loading: false });
-          console.error('Error en signIn:', error);
 
           if (error instanceof AxiosError) {
             if (error.message.includes('timeout')) {
@@ -153,7 +151,7 @@ export const useAuthStore = create<AuthState>()(
           });
         } catch (error) {
           set({ loading: false });
-          console.error('Error en signUp:', error);
+
           const apiError = error as ApiError;
           if (apiError.response?.status === 409) {
             throw new Error(
@@ -201,11 +199,8 @@ export const useAuthStore = create<AuthState>()(
           }));
           return response;
         } catch (error) {
-          console.error('[updateUser] Error al actualizar usuario:', error);
           if (error && typeof error === 'object' && 'response' in error) {
             // Mostrar el mensaje de error del backend si existe
-            // @ts-expect-error: Backend response type is not fully defined
-            console.error('[updateUser] Detalle del error del backend:', error.response?.data);
           }
           throw error;
         }
