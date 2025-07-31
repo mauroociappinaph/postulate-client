@@ -1,4 +1,4 @@
-import { requestInterceptor, responseInterceptor } from './interceptors/auth.interceptors';
+import { requestInterceptor, responseInterceptor } from '../features/auth/api/auth.interceptors';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { API_URL, API_KEY } from './apiAxios';
 
