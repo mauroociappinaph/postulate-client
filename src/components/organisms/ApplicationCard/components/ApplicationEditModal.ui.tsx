@@ -11,7 +11,7 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '.
 import { newPostulationSchema } from '../../../../features/postulation/domain/validation';
 import { z } from 'zod';
 import { useLanguageStore } from '../../../../store';
-import { ApplicationEditModalUIProps } from '../../../../types';
+import { ApplicationEditModalUIProps } from '@/features/postulation/types/ApplicationCard.interface';
 
 type FormData = z.infer<typeof newPostulationSchema>;
 

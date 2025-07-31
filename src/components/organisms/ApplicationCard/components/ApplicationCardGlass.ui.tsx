@@ -1,9 +1,9 @@
-import { ApplicationCardGlassProps } from '../../../../types/components/organisms/ApplicationCard.interface';
+import { ApplicationCardProps } from '@/features/postulation/types/ApplicationCard.interface';
 import {
   STATUS_LABELS,
   STATUS_COLORS,
   STATUS_LABELS_EN,
-} from '../../../../types/interface/postulations/postulation';
+} from '../../../../features/postulation/types/postulation';
 import { useLanguageStore } from '../../../../store/language/languageStore';
 
 export const ApplicationCardGlass = ({
@@ -11,7 +11,7 @@ export const ApplicationCardGlass = ({
   onViewDetail,
   onEdit,
   onDelete,
-}: ApplicationCardGlassProps) => {
+}: ApplicationCardProps) => {
   const {
     company,
     position,

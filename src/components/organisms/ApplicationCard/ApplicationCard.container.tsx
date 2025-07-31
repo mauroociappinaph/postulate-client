@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { ApplicationCardGlass } from './components/ApplicationCardGlass.ui';
 import ApplicationDetailModalUI from './components/ApplicationDetailModal.ui';
 import ApplicationEditModalUI from './components/ApplicationEditModal.ui';
-import { Postulation } from '../../../types/interface/postulations/postulation';
+
 import { motion } from 'framer-motion';
-import { usePostulationsStore } from '../../../store';
-import { postulationsApi } from '../../../api/postulations';
+
+import { postulationsApi } from '@/features/postulation/api/postulations';
 import { toast } from 'react-hot-toast';
 import { isAxiosError } from 'axios';
 import { useLanguageStore } from '../../../store/language/languageStore';
+import { Postulation, usePostulationsStore } from '../../../store';
 
 interface ErrorResponse {
   message: string;

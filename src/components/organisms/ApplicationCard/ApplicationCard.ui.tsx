@@ -1,15 +1,18 @@
 import React from 'react';
-import { ApplicationCardProps } from '../../../types/components/organisms/ApplicationCard.interface';
+
 import { Edit, Trash2, Calendar, AlertTriangle } from 'lucide-react';
 import { APP_COLORS } from '../../../styles/colors';
 import Modal from '../../molecules/Modal';
 import Card from '../../molecules/Card';
 import Button from '../../atoms/Button';
 import { StatusHelpers } from '../../../lib/helpers';
-import { Postulation, PostulationStatus } from '../../../types/interface/postulations/postulation';
+
 import { useLanguageStore } from '../../../store/language/languageStore';
 
 // Definimos la interfaz para las props del UI
+import { Postulation, PostulationStatus } from '@/features/postulation/types/postulation';
+import { ApplicationCardProps } from '../../../types';
+
 interface ApplicationCardUIProps extends ApplicationCardProps {
   application: Postulation;
   formattedDate: string;
